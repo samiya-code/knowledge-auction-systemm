@@ -220,7 +220,7 @@ quizResultSchema.statics.getQuizLeaderboard = function(quizId, limit = 10) {
 };
 
 // Static method to get overall leaderboard
-quizResultSchema.statics.getOverallLeaderboard = function(limit = 10, timeFilter = 'all') => {
+quizResultSchema.statics.getOverallLeaderboard = function(limit = 10, timeFilter = 'all')  {
   let dateFilter = {};
   
   if (timeFilter === 'today') {

@@ -15,6 +15,9 @@ const { errorHandler, notFound } = require('./middleware/errorHandler');
 
 // Initialize Express app
 const app = express();
+const connectDB = require("./config/db");
+// Connect to database
+connectDB();
 const PORT = process.env.PORT || 5000;
 
 // Security middleware
