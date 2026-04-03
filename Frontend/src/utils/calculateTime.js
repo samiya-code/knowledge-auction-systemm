@@ -1,7 +1,5 @@
-import api from './api';
-
 // Result service for managing quiz results and rankings
-export const resultService = {
+const resultService = {
   // Get leaderboard data
   getLeaderboard: async (page = 1, limit = 10) => {
     try {
@@ -52,3 +50,5 @@ export const resultService = {
     }
   }
 };
+
+export default resultService;

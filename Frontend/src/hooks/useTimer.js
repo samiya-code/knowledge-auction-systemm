@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { calculateTime } from '../utils/calculateTime';
+import  resultService  from '../utils/calculateTime';
 
 export const useTimer = (initialTime = 0, isActive = true, onTimeUp = null) => {
   const [timeLeft, setTimeLeft] = useState(initialTime);
