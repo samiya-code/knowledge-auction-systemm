@@ -1,0 +1,265 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "text": "What is React?",
+      "type": "multiple-choice",
+      "options": [
+        "A JavaScript library for building user interfaces",
+        "A database management system",
+        "A programming language",
+        "An operating system"
+      ],
+      "correctAnswer": 0,
+      "explanation": "React is a JavaScript library developed by Facebook for building user interfaces, particularly web applications with complex, interactive UIs.",
+      "difficulty": 1,
+      "points": 1,
+      "category": "Fundamentals"
+    },
+    {
+      "id": 2,
+      "courseId": 1,
+      "text": "What is a React component?",
+      "type": "multiple-choice",
+      "options": [
+        "A reusable piece of UI that can have its own state and logic",
+        "A database table",
+        "A CSS stylesheet",
+        "An HTML file"
+      ],
+      "correctAnswer": 0,
+      "explanation": "React components are reusable building blocks that encapsulate their own structure, logic, and styling, making it easier to manage complex UIs.",
+      "difficulty": 1,
+      "points": 1,
+      "category": "Components"
+    },
+    {
+      "id": 3,
+      "courseId": 1,
+      "text": "What is the purpose of JSX in React?",
+      "type": "multiple-choice",
+      "options": [
+        "To write HTML-like syntax in JavaScript",
+        "To style React components",
+        "To manage state in React",
+        "To handle events in React"
+      ],
+      "correctAnswer": 0,
+      "explanation": "JSX allows developers to write HTML-like syntax directly in JavaScript, making React code more readable and intuitive.",
+      "difficulty": 2,
+      "points": 2,
+      "category": "JSX"
+    },
+    {
+      "id": 4,
+      "courseId": 1,
+      "text": "Which hook is used to manage state in functional components?",
+      "type": "multiple-choice",
+      "options": [
+        "useState",
+        "useEffect",
+        "useContext",
+        "useReducer"
+      ],
+      "correctAnswer": 0,
+      "explanation": "useState is the primary hook used to add state to functional components in React.",
+      "difficulty": 2,
+      "points": 2,
+      "category": "Hooks"
+    },
+    {
+      "id": 5,
+      "courseId": 1,
+      "text": "What is the virtual DOM?",
+      "type": "multiple-choice",
+      "options": [
+        "A JavaScript representation of the real DOM",
+        "A new HTML standard",
+        "A CSS framework",
+        "A database for React applications"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The virtual DOM is a lightweight JavaScript representation of the actual DOM, which React uses to optimize updates and improve performance.",
+      "difficulty": 3,
+      "points": 2,
+      "category": "Performance"
+    },
+    {
+      "id": 6,
+      "courseId": 2,
+      "text": "What is a closure in JavaScript?",
+      "type": "multiple-choice",
+      "options": [
+        "A function that has access to variables in its outer scope",
+        "A way to close browser windows",
+        "A type of loop",
+        "A method for string manipulation"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A closure is a function that has access to variables in its outer (enclosing) lexical scope, even when the outer function has finished executing.",
+      "difficulty": 3,
+      "points": 2,
+      "category": "Closures"
+    },
+    {
+      "id": 7,
+      "courseId": 2,
+      "text": "What is the difference between '==' and '===' in JavaScript?",
+      "type": "multiple-choice",
+      "options": [
+        "'==' compares values with type coercion, '===' compares values without type coercion",
+        "'==' is for numbers, '===' is for strings",
+        "'==' is newer than '==='",
+        "There is no difference"
+      ],
+      "correctAnswer": 0,
+      "explanation": "'==' performs type coercion before comparison, while '===' performs strict equality comparison without type conversion.",
+      "difficulty": 2,
+      "points": 2,
+      "category": "Operators"
+    },
+    {
+      "id": 8,
+      "courseId": 2,
+      "text": "What is 'this' keyword in JavaScript?",
+      "type": "multiple-choice",
+      "options": [
+        "A reference to the object that is executing the current function",
+        "A reference to the global window object",
+        "A reference to the function itself",
+        "A reserved word with no meaning"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The 'this' keyword refers to the object that is currently executing the function, and its value depends on how the function is called.",
+      "difficulty": 3,
+      "points": 2,
+      "category": "This Keyword"
+    },
+    {
+      "id": 9,
+      "courseId": 3,
+      "text": "What is NumPy primarily used for?",
+      "type": "multiple-choice",
+      "options": [
+        "Numerical computing and array operations",
+        "Web development",
+        "Database management",
+        "Machine learning only"
+      ],
+      "correctAnswer": 0,
+      "explanation": "NumPy is a fundamental package for scientific computing in Python, providing support for large, multi-dimensional arrays and matrices.",
+      "difficulty": 1,
+      "points": 1,
+      "category": "NumPy"
+    },
+    {
+      "id": 10,
+      "courseId": 3,
+      "text": "What is pandas in Python?",
+      "type": "multiple-choice",
+      "options": [
+        "A library for data manipulation and analysis",
+        "A type of plot",
+        "A database system",
+        "A web framework"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Pandas is a powerful library for data manipulation and analysis, providing data structures like DataFrame and Series for working with structured data.",
+      "difficulty": 1,
+      "points": 1,
+      "category": "Pandas"
+    },
+    {
+      "id": 11,
+      "courseId": 3,
+      "text": "What is scikit-learn?",
+      "type": "multiple-choice",
+      "options": [
+        "A machine learning library for Python",
+        "A data visualization tool",
+        "A web scraping library",
+        "A text processing library"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Scikit-learn is a comprehensive machine learning library that provides tools for classification, regression, clustering, and more.",
+      "difficulty": 2,
+      "points": 2,
+      "category": "Machine Learning"
+    },
+    {
+      "id": 12,
+      "courseId": 4,
+      "text": "What is the purpose of user research in UX design?",
+      "type": "multiple-choice",
+      "options": [
+        "To understand user needs, behaviors, and motivations",
+        "To create beautiful designs",
+        "To write code",
+        "To test server performance"
+      ],
+      "correctAnswer": 0,
+      "explanation": "User research helps designers understand the target audience's needs, behaviors, and motivations to create more effective and user-friendly designs.",
+      "difficulty": 1,
+      "points": 1,
+      "category": "User Research"
+    },
+    {
+      "id": 13,
+      "courseId": 4,
+      "text": "What is a wireframe in UX design?",
+      "type": "multiple-choice",
+      "options": [
+        "A low-fidelity visual guide of a webpage or app",
+        "A high-fidelity design",
+        "A functional prototype",
+        "A user testing report"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A wireframe is a basic visual guide that shows the structure and layout of a webpage or application without detailed design elements.",
+      "difficulty": 1,
+      "points": 1,
+      "category": "Wireframing"
+    },
+    {
+      "id": 14,
+      "courseId": 4,
+      "text": "What is responsive design?",
+      "type": "multiple-choice",
+      "options": [
+        "Design that adapts to different screen sizes and devices",
+        "Design that only works on mobile",
+        "Design that uses bright colors",
+        "Design that loads quickly"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Responsive design ensures that websites and applications work well on various devices and screen sizes by automatically adjusting layout and content.",
+      "difficulty": 2,
+      "points": 2,
+      "category": "Responsive Design"
+    },
+    {
+      "id": 15,
+      "courseId": "general",
+      "text": "What is the best way to learn programming?",
+      "type": "multiple-choice",
+      "options": [
+        "Practice regularly and build projects",
+        "Only read books",
+        "Watch videos without coding",
+        "Memorize syntax"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The most effective way to learn programming is through consistent practice and building real projects, which reinforces concepts and develops problem-solving skills.",
+      "difficulty": 1,
+      "points": 1,
+      "category": "Learning Strategy"
+    }
+  ],
+  "metadata": {
+    "totalQuestions": 15,
+    "categories": ["Fundamentals", "Components", "JSX", "Hooks", "Performance", "Closures", "Operators", "This Keyword", "NumPy", "Pandas", "Machine Learning", "User Research", "Wireframing", "Responsive Design", "Learning Strategy"],
+    "difficultyLevels": [1, 2, 3],
+    "lastUpdated": "2024-01-15"
+  }
+}

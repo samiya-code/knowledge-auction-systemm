@@ -1,0 +1,222 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "role": "student",
+      "avatar": null,
+      "bio": "Passionate learner interested in web development and data science.",
+      "isActive": true,
+      "emailVerified": true,
+      "loginStreak": 15,
+      "stats": {
+        "totalQuizzesTaken": 45,
+        "totalScore": 9850,
+        "averageScore": 89.1,
+        "totalEarnings": 1250.75,
+        "highestScore": 100,
+        "correctAnswers": 405,
+        "totalAnswers": 450
+      },
+      "achievements": [
+        {
+          "type": "first_quiz",
+          "earnedAt": "2023-12-01T10:00:00Z"
+        },
+        {
+          "type": "perfect_score",
+          "earnedAt": "2023-12-15T14:30:00Z"
+        },
+        {
+          "type": "streak_7",
+          "earnedAt": "2023-12-20T09:15:00Z"
+        },
+        {
+          "type": "top_10",
+          "earnedAt": "2024-01-01T12:00:00Z"
+        }
+      ],
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": true
+        },
+        "theme": "light",
+        "language": "en"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Bob Smith",
+      "email": "bob@example.com",
+      "role": "student",
+      "avatar": null,
+      "bio": "Software developer looking to expand my skills in new technologies.",
+      "isActive": true,
+      "emailVerified": true,
+      "loginStreak": 12,
+      "stats": {
+        "totalQuizzesTaken": 42,
+        "totalScore": 9420,
+        "averageScore": 88.7,
+        "totalEarnings": 1180.50,
+        "highestScore": 98,
+        "correctAnswers": 372,
+        "totalAnswers": 420
+      },
+      "achievements": [
+        {
+          "type": "first_quiz",
+          "earnedAt": "2023-11-15T08:30:00Z"
+        },
+        {
+          "type": "streak_7",
+          "earnedAt": "2023-12-01T10:00:00Z"
+        },
+        {
+          "type": "quick_learner",
+          "earnedAt": "2023-12-10T16:45:00Z"
+        }
+      ],
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": false
+        },
+        "theme": "dark",
+        "language": "en"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Carol Williams",
+      "email": "carol@example.com",
+      "role": "student",
+      "avatar": null,
+      "bio": "Data science enthusiast with a background in mathematics.",
+      "isActive": true,
+      "emailVerified": true,
+      "loginStreak": 8,
+      "stats": {
+        "totalQuizzesTaken": 38,
+        "totalScore": 8950,
+        "averageScore": 87.2,
+        "totalEarnings": 1095.25,
+        "highestScore": 95,
+        "correctAnswers": 331,
+        "totalAnswers": 380
+      },
+      "achievements": [
+        {
+          "type": "first_quiz",
+          "earnedAt": "2023-11-20T11:15:00Z"
+        },
+        {
+          "type": "perfect_score",
+          "earnedAt": "2023-12-05T13:20:00Z"
+        },
+        {
+          "type": "streak_7",
+          "earnedAt": "2023-12-18T07:30:00Z"
+        }
+      ],
+      "preferences": {
+        "notifications": {
+          "email": false,
+          "push": true
+        },
+        "theme": "light",
+        "language": "en"
+      }
+    },
+    {
+      "id": 4,
+      "name": "David Brown",
+      "email": "david@example.com",
+      "role": "instructor",
+      "avatar": null,
+      "bio": "Full-stack developer with 10+ years of experience in web technologies.",
+      "isActive": true,
+      "emailVerified": true,
+      "loginStreak": 6,
+      "stats": {
+        "totalQuizzesTaken": 40,
+        "totalScore": 8720,
+        "averageScore": 85.5,
+        "totalEarnings": 980.00,
+        "highestScore": 92,
+        "correctAnswers": 342,
+        "totalAnswers": 400
+      },
+      "achievements": [
+        {
+          "type": "first_quiz",
+          "earnedAt": "2023-10-15T09:00:00Z"
+        },
+        {
+          "type": "perfect_score",
+          "earnedAt": "2023-11-20T14:15:00Z"
+        }
+      ],
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": true
+        },
+        "theme": "light",
+        "language": "en"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Emma Davis",
+      "email": "emma@example.com",
+      "role": "student",
+      "avatar": null,
+      "bio": "UX designer passionate about creating user-centered digital experiences.",
+      "isActive": true,
+      "emailVerified": true,
+      "loginStreak": 10,
+      "stats": {
+        "totalQuizzesTaken": 35,
+        "totalScore": 8450,
+        "averageScore": 84.9,
+        "totalEarnings": 875.50,
+        "highestScore": 88,
+        "correctAnswers": 297,
+        "totalAnswers": 350
+      },
+      "achievements": [
+        {
+          "type": "first_quiz",
+          "earnedAt": "2023-11-01T12:30:00Z"
+        },
+        {
+          "type": "streak_7",
+          "earnedAt": "2023-11-25T08:45:00Z"
+        },
+        {
+          "type": "quick_learner",
+          "earnedAt": "2023-12-01T15:20:00Z"
+        }
+      ],
+      "preferences": {
+        "notifications": {
+          "email": true,
+          "push": true
+        },
+        "theme": "auto",
+        "language": "en"
+      }
+    }
+  ],
+  "metadata": {
+    "totalUsers": 5,
+    "roles": ["student", "instructor", "admin"],
+    "avgLoginStreak": 10.2,
+    "avgQuizScore": 87.08,
+    "totalEarnings": 6381.00,
+    "lastUpdated": "2024-01-15"
+  }
+}
