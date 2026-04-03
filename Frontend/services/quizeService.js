@@ -52,3 +52,7 @@ export const quizService = {
     }
   }
 };
+// import API from "./api";
+
+// export const fetchQuiz = (topic) =>
+//   API.get(`/ai/quiz?topic=${topic}`);
