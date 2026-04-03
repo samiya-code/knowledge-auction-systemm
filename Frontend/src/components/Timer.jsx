@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { formatTime } from '../utils/calculateTime';
+import  resultService  from '../utils/calculateTime';
 
 const Timer = ({ 
   initialTime, 

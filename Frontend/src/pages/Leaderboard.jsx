@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
-import { resultService } from '../services/resultService';
-import { formatCurrency } from '../utils/formatCurrency';
-import { getRelativeTime } from '../utils/calculateTime';
+import { resultService } from '../utils/calculateTime';
+
 
 const Leaderboard = () => {
   const { isAuthenticated } = useApp();
