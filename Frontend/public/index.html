@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bashedu Knowledge Auction System</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .card { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: 20px 0; }
+        .btn { padding: 10px 20px; border-radius: 4px; border: none; cursor: pointer; font-weight: 500; }
+        .btn-primary { background: #3b82f6; color: white; }
+        .btn-success { background: #10b981; color: white; }
+        .btn:hover { opacity: 0.9; }
+        .form-input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin: 5px 0; }
+        .question-card { border: 1px solid #e5e7eb; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .correct-answer { background: #dcfce7; border-color: #22c55e; }
+        .wrong-answer { background: #fef2f2; border-color: #ef4444; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('generator');
+            const [loading, setLoading] = useState(false);
+            const [questions, setQuestions] = useState([]);
+            const [formData, setFormData] = useState({
+                courseId: 'CS101',
+                title: 'Introduction to Computer Science',
+                courseType: 'computerscience',
+                difficulty: 'intermediate',
+                topic: 'Programming Fundamentals',
+                questionCount: 5
+            });
+
+            const API_BASE = 'http://localhost:5000/api';
+
+            const handleChange = (e) => {
+                setFormData({
+                    ...formData,
+                    [e.target.name]: e.target.value
+                });
+            };
+
+            const generateQuestions = async (e) => {
+                e.preventDefault();
+                setLoading(true);
+                setQuestions([]);
+
+                try {
+                    const response = await fetch(`${API_BASE}/ai/generate-course-questions`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token') || 'demo-token'}`
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        setQuestions(result.data.questions);
+                    } else {
+                        alert('Failed to generate questions: ' + result.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error generating questions. Make sure backend server is running on port 5000');
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            const testConnection = async () => {
+                try {
+                    const response = await fetch(`${API_BASE}/ai/test-connection`, {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token') || 'demo-token'}`
+                        }
+                    });
+                    const result = await response.json();
+                    alert(result.message);
+                } catch (error) {
+                    alert('Backend server not running. Please start the backend first.');
+                }
+            };
+
+            const addKnowledge = async () => {
+                const knowledgeData = {
+                    courseType: 'computerscience',
+                    content: {
+                        topics: ['React Hooks', 'State Management', 'Component Lifecycle'],
+                        facts: ['React uses virtual DOM', 'Hooks start with "use"', 'State is immutable'],
+                        examples: ['useState for state', 'useEffect for side effects', 'useContext for global state']
+                    }
+                };
+
+                try {
+                    const response = await fetch(`${API_BASE}/ai/add-course-knowledge`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token') || 'demo-token'}`
+                        },
+                        body: JSON.stringify(knowledgeData)
+                    });
+
+                    const result = await response.json();
+                    alert(result.message);
+                } catch (error) {
+                    alert('Error adding knowledge');
+                }
+            };
+
+            const QuestionDisplay = ({ questions }) => (
+                <div className="space-y-4">
+                    <h3 className="text-xl font-semibold">Generated Questions ({questions.length})</h3>
+                    {questions.map((question, index) => (
+                        <div key={question.id || index} className="question-card">
+                            <div className="flex justify-between items-start mb-2">
+                                <h4 className="font-medium">
+                                    Q{index + 1}: {question.text}
+                                </h4>
+                                <div className="flex space-x-2 text-sm">
+                                    <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded">
+                                        {question.difficulty}/5
+                                    </span>
+                                    <span className="px-2 py-1 bg-green-100 text-green-800 rounded">
+                                        {question.points} pts
+                                    </span>
+                                    <span className="px-2 py-1 bg-purple-100 text-purple-800 rounded">
+                                        {question.category}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div className="space-y-2 mb-3">
+                                {question.options.map((option, optIndex) => (
+                                    <div
+                                        key={optIndex}
+                                        className={`p-2 rounded ${
+                                            optIndex === question.correctAnswer
+                                                ? 'correct-answer'
+                                                : 'wrong-answer'
+                                        }`}
+                                    >
+                                        <span className="font-medium">
+                                            {String.fromCharCode(65 + optIndex)}.
+                                        </span>{' '}
+                                        {option}
+                                        {optIndex === question.correctAnswer && (
+                                            <span className="ml-2 text-green-600 font-medium">✓ Correct</span>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="p-3 bg-blue-50 rounded text-sm">
+                                <strong>Explanation:</strong> {question.explanation}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            );
+
+            return (
+                <div className="min-h-screen bg-gray-50">
+                    <header className="bg-blue-600 text-white p-6">
+                        <div className="container">
+                            <h1 className="text-3xl font-bold">Bashedu Knowledge Auction System</h1>
+                            <p className="mt-2">AI-Powered Course-Specific Question Generation</p>
+                        </div>
+                    </header>
+
+                    <div className="container">
+                        <div className="mb-6">
+                            <button
+                                onClick={() => setActiveTab('generator')}
+                                className={`btn mr-2 ${activeTab === 'generator' ? 'btn-primary' : 'btn-success'}`}
+                            >
+                                Question Generator
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('info')}
+                                className={`btn ${activeTab === 'info' ? 'btn-primary' : 'btn-success'}`}
+                            >
+                                System Info
+                            </button>
+                            <button
+                                onClick={testConnection}
+                                className="btn btn-primary ml-4"
+                            >
+                                Test Backend Connection
+                            </button>
+                        </div>
+
+                        {activeTab === 'generator' && (
+                            <div className="card">
+                                <h2 className="text-2xl font-bold mb-4">Course-Aware AI Question Generator</h2>
+                                
+                                <div className="mb-6 p-4 bg-blue-50 rounded">
+                                    <h3 className="font-semibold mb-2">How it works:</h3>
+                                    <ul className="text-sm space-y-1">
+                                        <li>• AI uses course-specific knowledge base for accurate questions</li>
+                                        <li>• Questions are tailored to Computer Science curriculum</li>
+                                        <li>• Difficulty levels adapt to your selection</li>
+                                        <li>• Knowledge can be expanded dynamically</li>
+                                    </ul>
+                                </div>
+
+                                <form onSubmit={generateQuestions} className="space-y-4 mb-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium mb-1">Course ID</label>
+                                            <input
+                                                type="text"
+                                                name="courseId"
+                                                value={formData.courseId}
+                                                onChange={handleChange}
+                                                className="form-input"
+                                                placeholder="CS101"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-sm font-medium mb-1">Course Title</label>
+                                            <input
+                                                type="text"
+                                                name="title"
+                                                value={formData.title}
+                                                onChange={handleChange}
+                                                className="form-input"
+                                                placeholder="Course title"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-sm font-medium mb-1">Course Type</label>
+                                            <select
+                                                name="courseType"
+                                                value={formData.courseType}
+                                                onChange={handleChange}
+                                                className="form-input"
+                                            >
+                                                <option value="computerscience">Computer Science</option>
+                                                <option value="mathematics">Mathematics</option>
+                                                <option value="physics">Physics</option>
+                                                <option value="chemistry">Chemistry</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-sm font-medium mb-1">Difficulty</label>
+                                            <select
+                                                name="difficulty"
+                                                value={formData.difficulty}
+                                                onChange={handleChange}
+                                                className="form-input"
+                                            >
+                                                <option value="beginner">Beginner</option>
+                                                <option value="intermediate">Intermediate</option>
+                                                <option value="advanced">Advanced</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-sm font-medium mb-1">Topic</label>
+                                            <input
+                                                type="text"
+                                                name="topic"
+                                                value={formData.topic}
+                                                onChange={handleChange}
+                                                className="form-input"
+                                                placeholder="Specific topic"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-sm font-medium mb-1">Number of Questions</label>
+                                            <input
+                                                type="number"
+                                                name="questionCount"
+                                                value={formData.questionCount}
+                                                onChange={handleChange}
+                                                min="1"
+                                                max="10"
+                                                className="form-input"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex space-x-4">
+                                        <button
+                                            type="submit"
+                                            disabled={loading}
+                                            className="btn btn-primary"
+                                        >
+                                            {loading ? 'Generating...' : 'Generate Questions'}
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            onClick={addKnowledge}
+                                            className="btn btn-success"
+                                        >
+                                            Add React Knowledge
+                                        </button>
+                                    </div>
+                                </form>
+
+                                {questions.length > 0 && <QuestionDisplay questions={questions} />}
+                            </div>
+                        )}
+
+                        {activeTab === 'info' && (
+                            <div className="card">
+                                <h2 className="text-2xl font-bold mb-4">System Information</h2>
+                                
+                                <div className="space-y-4">
+                                    <div>
+                                        <h3 className="font-semibold text-lg">Features</h3>
+                                        <ul className="list-disc pl-5 space-y-1">
+                                            <li>Course-specific AI question generation</li>
+                                            <li>Knowledge base management</li>
+                                            <li>Adaptive difficulty levels</li>
+                                            <li>Real-time question generation</li>
+                                            <li>Computer Science focused content</li>
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="font-semibold text-lg">API Endpoints</h3>
+                                        <ul className="list-disc pl-5 space-y-1">
+                                            <li><code>POST /api/ai/generate-course-questions</code> - Generate questions</li>
+                                            <li><code>POST /api/ai/generate-course-feedback</code> - Generate feedback</li>
+                                            <li><code>POST /api/ai/add-course-knowledge</code> - Add knowledge</li>
+                                            <li><code>GET /api/ai/test-connection</code> - Test connection</li>
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="font-semibold text-lg">Setup Instructions</h3>
+                                        <ol className="list-decimal pl-5 space-y-2">
+                                            <li>Start the backend server: <code>cd backend && npm start</code></li>
+                                            <li>Open this HTML file in your browser</li>
+                                            <li>Click "Test Backend Connection" to verify</li>
+                                            <li>Generate questions using the form</li>
+                                        </ol>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="font-semibold text-lg">Knowledge Base</h3>
+                                        <p>The system uses a Computer Science knowledge base containing:</p>
+                                        <ul className="list-disc pl-5 space-y-1">
+                                            <li>Programming fundamentals</li>
+                                            <li>Data structures and algorithms</li>
+                                            <li>Web development concepts</li>
+                                            <li>Database systems</li>
+                                            <li>And much more...</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    <footer className="bg-gray-800 text-white p-6 mt-12">
+                        <div className="container text-center">
+                            <p>Bashedu Knowledge Auction System - AI-Powered Learning Platform</p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
