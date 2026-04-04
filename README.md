@@ -103,7 +103,7 @@ We built an **AI-powered knowledge auction system** where students:
 
 # ⚙️ **Setup Instructions**
 
-# 1️⃣ Clone the repository
+# 1️⃣ Clone the repositorym
 
 ```
 git clone <your-repo-link>
