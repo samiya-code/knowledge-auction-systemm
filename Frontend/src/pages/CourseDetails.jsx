@@ -342,7 +342,7 @@ const CourseDetails = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-sm text-gray-700">{course.instructor.bio}</p>
+              <p className="text-sm text-gray-600">{course.instructor.bio}</p>
             </div>
           </div>
         </div>
