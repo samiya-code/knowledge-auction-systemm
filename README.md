@@ -1,16 +1,16 @@
-# 🎓 **AI Knowledge Auction Platform**
+#  **AI Knowledge Auction Platform**
 
 > _A gamified educational platform where students compete in AI-powered quizzes to earn discounts on courses, making quality education more affordable and engaging._
 
 ---
 
-# 🚀 **Problem**
+#  **Problem**
 
 Many students in **Ethiopia** lack access to affordable, high-quality learning resources. Traditional education systems are often **passive** and fail to motivate continuous engagement and improvement.
 
 ---
 
-## 💡 **Solution**
+##  **Solution**
 
 We built an **AI-powered knowledge auction system** where students:
 
@@ -18,24 +18,24 @@ We built an **AI-powered knowledge auction system** where students:
 - Compete in **real-time quizzes**
 - Earn **performance-based discounts**
 
-👉 This creates a **fair, engaging, and merit-based learning ecosystem**.
+ This creates a **fair, engaging, and merit-based learning ecosystem**.
 
 ---
 
-## 🎯 **Features**
+##  **Features**
 
-- 🎓 **Course auction system**
-- 🤖 **AI-generated quiz questions**
-- 🧠 **Smart ranking system**
-- 💸 **Refund-based fairness model**
-- 🏆 **Leaderboard**
-- 🔔 **Real-time notifications**
-- 📊 **AI performance feedback**
-- 🔐 **Authentication (Login/Signup)**
+-  **Course auction system**
+-  **AI-generated quiz questions**
+-  **Smart ranking system**
+-  **Refund-based fairness model**
+-  **Leaderboard**
+-  **Real-time notifications**
+-  **AI performance feedback**
+-  **Authentication (Login/Signup)**
 
 ---
 
-## 🧠 **How It Works**
+##  **How It Works**
 
 1. Students **sign up for free** and explore courses
 2. They join an auction by paying a **10% deposit**
@@ -47,24 +47,24 @@ We built an **AI-powered knowledge auction system** where students:
 
 ---
 
-## 🏗️ **Tech Stack**
+##  **Tech Stack**
 
-### 🎨 Frontend
+###  Frontend
 
 - **React**
 - **Tailwind CSS**
 - **React Router**
 
-### ⚙️ Backend
+###  Backend
 
 - **Node.js**
 - **Express.js**
 
-### 🤖 AI Integration
+###  AI Integration
 
 - **OpenAI API**
 
-### 🧰 Other Tools
+###  Other Tools
 
 - **Axios**
 - **Context API**
@@ -137,7 +137,7 @@ Users can view:
 - Auction schedules
 - Discount policies
 
-👉 This ensures **transparency** and allows informed decision-making.
+ This ensures **transparency** and allows informed decision-making.
 
 
 # 🎓 **Student Participation & Refund Policy**
@@ -145,22 +145,22 @@ Users can view:
 - Students join auctions by paying a **10% deposit**
 - Discounts are assigned based on **quiz performance**
 
-# 🔁 Refund Condition:
+#  Refund Condition:
 
 - Refunds are **only provided if the student enrolls** using their discount
 - If the student does **not enroll**, the deposit is **non-refundable**
 
-# 🏫 **Provider Guarantee & Compensation Policy**
+#  **Provider Guarantee & Compensation Policy**
 
 - Operates under a **minimum–maximum student agreement**
 
-# 📌 Compensation Rule:
+#  Compensation Rule:
 
 - If enrolled students < minimum → **platform compensates provider**
 - If minimum is reached → **no compensation required**
 
 
-# ⚖️ **Fairness & Anti-Cheating**
+#  **Fairness & Anti-Cheating**
 
 - Equal opportunity for all students
 - Time-limited quizzes
@@ -168,14 +168,14 @@ Users can view:
 - Performance-based ranking
 
 
-# 🤖 **AI Transparency**
+#  **AI Transparency**
 
 - AI generates **quiz questions**
 - AI provides **performance feedback**
 - Ranking is based on **measurable performance (not AI bias)**
 
 
-# 📊 **Transparency**
+#  **Transparency**
 
 Students can always view:
 
