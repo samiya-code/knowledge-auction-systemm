@@ -6,7 +6,7 @@
 
 ---
 
-## 🚀 **Problem**
+# 🚀 **Problem**
 
 Many students in **Ethiopia** lack access to affordable, high-quality learning resources. Traditional education systems are often **passive** and fail to motivate continuous engagement and improvement.
 
@@ -101,24 +101,22 @@ We built an **AI-powered knowledge auction system** where students:
 📄 **README.md** – Project documentation  
 ```
 
+# ⚙️ **Setup Instructions**
 
-
-## ⚙️ **Setup Instructions**
-
-### 1️⃣ Clone the repository
+# 1️⃣ Clone the repository
 
 ```
 git clone <your-repo-link>
 ```
 
-### 2️⃣ Setup Frontend
+# 2️⃣ Setup Frontend
 
 ```
 cd frontend
 npm start
 ```
 
-### 3️⃣ Setup Backend
+# 3️⃣ Setup Backend
 
 ```
 cd backend
@@ -126,7 +124,7 @@ npm start
 ```
 
 
-## 🔑 **Environment Variables**
+# 🔑 **Environment Variables**
 
 Create a `.env` file in the backend folder:
 
@@ -137,9 +135,9 @@ OPENAI_API_KEY=your_api_key_here
 
 
 
-## 📜 **Business Rules & Revenue Policies**
+# 📜 **Business Rules & Revenue Policies**
 
-### 🎓 **Free Access & Exploration**
+# 🎓 **Free Access & Exploration**
 
 Students can **sign up for free** and explore all available courses without any payment.
 
@@ -153,27 +151,27 @@ Users can view:
 👉 This ensures **transparency** and allows informed decision-making.
 
 
-### 🎓 **Student Participation & Refund Policy**
+# 🎓 **Student Participation & Refund Policy**
 
 - Students join auctions by paying a **10% deposit**
 - Discounts are assigned based on **quiz performance**
 
-#### 🔁 Refund Condition:
+# 🔁 Refund Condition:
 
 - Refunds are **only provided if the student enrolls** using their discount
 - If the student does **not enroll**, the deposit is **non-refundable**
 
-### 🏫 **Provider Guarantee & Compensation Policy**
+# 🏫 **Provider Guarantee & Compensation Policy**
 
 - Operates under a **minimum–maximum student agreement**
 
-#### 📌 Compensation Rule:
+# 📌 Compensation Rule:
 
 - If enrolled students < minimum → **platform compensates provider**
 - If minimum is reached → **no compensation required**
 
 
-### ⚖️ **Fairness & Anti-Cheating**
+# ⚖️ **Fairness & Anti-Cheating**
 
 - Equal opportunity for all students
 - Time-limited quizzes
@@ -181,14 +179,14 @@ Users can view:
 - Performance-based ranking
 
 
-### 🤖 **AI Transparency**
+# 🤖 **AI Transparency**
 
 - AI generates **quiz questions**
 - AI provides **performance feedback**
 - Ranking is based on **measurable performance (not AI bias)**
 
 
-### 📊 **Transparency**
+# 📊 **Transparency**
 
 Students can always view:
 
