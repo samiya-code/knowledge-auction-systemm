@@ -1,4 +1,4 @@
-# Bashedu Auction Platform
+# Knowledge Auction Platform
 
 A comprehensive quiz-based learning platform with auction-style earnings system, built with React and Node.js.
 
