@@ -59,7 +59,7 @@ app.get('/health', (req, res) => {
 });
 
 // API routes
-app.use('/api/auth', authRoutes);
+app.use('/api', authRoutes);
 app.use('/api/courses', coursesRoutes);
 app.use('/api/quiz', quizRoutes);
 app.use('/api/results', resultRoutes);
@@ -78,9 +78,9 @@ app.use(errorHandler);
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📚 Bashedu Auction Platform API`);
-  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(` Server running on port ${PORT}`);
+  console.log(` Bashedu Auction Platform API`);
+  console.log(` Environment: ${process.env.NODE_ENV || 'development'}`);
 });
 
 module.exports = app;

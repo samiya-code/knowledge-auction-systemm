@@ -69,6 +69,15 @@ const validatePasswordChange = (req, res, next) => {
 // Public routes
 router.post('/register', validateRegistration, asyncHandler(authController.register));
 router.post('/login', validateLogin, asyncHandler(authController.login));
+router.post('/users', async (req, res) => {
+  try {
+    const newUser = new User(req.body);
+    await newUser.save();
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
 
 // Protected routes
 router.use(authenticateToken);
