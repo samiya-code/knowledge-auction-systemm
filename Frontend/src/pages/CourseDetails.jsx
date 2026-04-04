@@ -2,16 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { formatCurrency } from '../utils/formatCurrency';
-import { calculateTime } from '../utils/calculateTime';
-import { getDiscountByRank, calculateRefund, calculateFinalPrice } from '../data/mockLeaderboard';
-import { AUCTION_CONFIG, AUCTION_STATUS } from '../utils/constants';
-import { auctionService } from '../services/auctionService';
-import { courseService } from '../services/courseService';
-import LiveAuctionPanel from '../components/LiveAuctionPanel';
+import { calculateDeposit } from '../data/mockCourses';
+import { getAuctionStatus } from '../data/mockCourses';
+import { AUCTION_STATUS, AUCTION_CONFIG } from '../utils/constants';
 import { useCountdown } from '../hooks/useTimer';
 import Loader from '../components/Loader';
 import ProtectedRoute from '../components/ProtectedRoute';
-import { mockCourses, getAuctionStatus, calculateDeposit } from '../data/mockCourses';
 
 const CourseDetails = () => {
   const { id } = useParams();
@@ -23,13 +19,60 @@ const CourseDetails = () => {
   const [joiningAuction, setJoiningAuction] = useState(false);
   const [error, setError] = useState(null);
 
+  // Mock course data - in real app, this would come from API
+  const mockCourse = {
+    id: parseInt(id),
+    title: 'Complete Web Development Bootcamp',
+    description: 'Learn HTML, CSS, JavaScript, React, Node.js and more in this comprehensive bootcamp. Master modern web development from scratch and build real-world applications.',
+    instructor: {
+      name: 'Dr. Sarah Johnson',
+      bio: 'Senior Web Developer with 15+ years of experience in building scalable web applications',
+      avatar: null,
+      rating: 4.8
+    },
+    price: 99.99,
+    originalPrice: 199.99,
+    duration: '40 hours',
+    level: 'Beginner',
+    category: 'Web Development',
+    studentsCount: 15420,
+    rating: 4.8,
+    reviewCount: 342,
+    language: 'English',
+    lastUpdated: '2024-01-15',
+    imageUrl: null,
+    auctionStartTime: new Date(Date.now() + 2 * 60 * 60 * 1000),
+    auctionEndTime: new Date(Date.now() + 4 * 60 * 60 * 1000),
+    isActive: true,
+    topics: ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js', 'MongoDB'],
+    prerequisites: ['Basic computer skills', 'No programming experience required'],
+    whatYouWillLearn: [
+      'Build modern web applications from scratch',
+      'Master HTML5, CSS3, and JavaScript ES6+',
+      'Create responsive websites with Bootstrap and Tailwind CSS',
+      'Develop single-page applications with React',
+      'Build RESTful APIs with Node.js and Express',
+      'Work with MongoDB databases',
+      'Deploy applications to production',
+      'Implement authentication and security best practices'
+    ],
+    auctionRules: [
+      'Pay 10% deposit to join the auction',
+      'Complete the quiz during the auction window',
+      'Higher scores = better discounts',
+      'Rank #1 gets 100% discount (free course)',
+      'Top 10 get 80% discount',
+      'Top 50 get 50% discount',
+      'Others get 5-20% discount based on performance',
+      '80% of deposit is refunded to all participants'
+    ]
+  };
+
   useEffect(() => {
-    // Find the course from mockCourses
-    const foundCourse = mockCourses.find(c => c.id === parseInt(id));
-    
+    // Simulate API call
     setTimeout(() => {
-      if (foundCourse) {
-        setCourse(foundCourse);
+      if (mockCourse.id === parseInt(id)) {
+        setCourse(mockCourse);
         setLoading(false);
       } else {
         setError('Course not found');
@@ -46,53 +89,6 @@ const CourseDetails = () => {
   const deposit = course ? calculateDeposit(course.price) : 0;
   const discountRange = "5-100%";
 
-  const handleStartAuction = async () => {
-    if (!isAuthenticated) {
-      navigate('/login', { 
-        state: { from: `/course/${id}` }
-      });
-      return;
-    }
-
-    setJoiningAuction(true);
-    setError(null);
-
-    try {
-      addNotification({
-        type: 'info',
-        title: 'Starting Auction...',
-        message: 'Initializing auction and generating AI quiz questions...'
-      });
-      
-      // Start auction and generate AI questions
-      const auctionResult = await auctionService.startAuction(course.id, course);
-      
-      // Update course to show auction is now live
-      setCourse(prev => ({
-        ...prev,
-        isAuctionLive: true,
-        currentBid: deposit,
-        bidCount: 0
-      }));
-      
-      addNotification({
-        type: 'success',
-        title: 'Auction Started!',
-        message: `AI generated ${auctionResult.questions?.length || 8} quiz questions. Auction is now live!`
-      });
-
-    } catch (error) {
-      setError('Failed to start auction. Please try again.');
-      addNotification({
-        type: 'error',
-        title: 'Auction Error',
-        message: error.message || 'Unable to start auction. Please try again.'
-      });
-    } finally {
-      setJoiningAuction(false);
-    }
-  };
-
   const handleJoinAuction = async () => {
     if (!isAuthenticated) {
       navigate('/login', { 
@@ -101,12 +97,21 @@ const CourseDetails = () => {
       return;
     }
 
+    if (auctionStatus?.status !== AUCTION_STATUS.ACTIVE) {
+      addNotification({
+        type: 'warning',
+        title: 'Auction Not Active',
+        message: 'Please wait for the auction to start.'
+      });
+      return;
+    }
+
     setJoiningAuction(true);
     setError(null);
 
     try {
-      // Join the auction
-      await auctionService.joinAuction(course.id, deposit);
+      // Simulate API call to join auction
+      await new Promise(resolve => setTimeout(resolve, 2000));
       
       addNotification({
         type: 'success',
@@ -127,12 +132,14 @@ const CourseDetails = () => {
       setError('Failed to join auction. Please try again.');
       addNotification({
         type: 'error',
-        title: 'Auction Error',
-        message: error.message || 'Unable to join auction. Please try again.'
+        title: 'Payment Failed',
+        message: 'Unable to process payment. Please try again.'
       });
     } finally {
       setJoiningAuction(false);
     }
+  };
+
   const formatTimeLeft = (milliseconds) => {
     if (!milliseconds || milliseconds <= 0) return 'Ended';
     
@@ -314,13 +321,101 @@ const CourseDetails = () => {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Live Auction Panel */}
-            <LiveAuctionPanel 
-              course={course}
-              auctionStatus={auctionStatus}
-              onJoinAuction={handleJoinAuction}
-              onStartAuction={handleStartAuction}
-            />
+            {/* Auction Status Card */}
+            <div className="bg-white rounded-xl shadow-sm p-6 sticky top-6">
+              {/* Timer */}
+              {(auctionStatus?.status === AUCTION_STATUS.ACTIVE || auctionStatus?.status === AUCTION_STATUS.UPCOMING) && (
+                <div className="mb-6">
+                  <div className="text-center mb-4">
+                    <div className="text-sm font-medium text-gray-600 mb-2">
+                      {auctionStatus?.status === AUCTION_STATUS.ACTIVE ? '⏰ Auction ends in:' : '🚀 Auction starts in:'}
+                    </div>
+                    <div className="text-3xl font-bold text-blue-600">
+                      {formatTimeLeft(auctionStatus?.timeLeft)}
+                    </div>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                      className="bg-blue-600 h-2 rounded-full transition-all duration-1000"
+                      style={{ 
+                        width: auctionStatus?.status === AUCTION_STATUS.ACTIVE 
+                          ? `${(1 - auctionStatus?.timeLeft / (course.auctionEndTime - course.auctionStartTime)) * 100}%`
+                          : '0%'
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Pricing */}
+              <div className="space-y-4 mb-6">
+                <div>
+                  <div className="text-sm text-gray-500 mb-1">Course Price</div>
+                  <div className="text-3xl font-bold text-gray-900">
+                    {formatCurrency(course.price)}
+                  </div>
+                  {course.originalPrice > course.price && (
+                    <div className="text-sm text-gray-400 line-through">
+                      {formatCurrency(course.originalPrice)}
+                    </div>
+                  )}
+                </div>
+                
+                <div className="border-t pt-4">
+                  <div className="text-sm text-gray-500 mb-1">Deposit Required</div>
+                  <div className="text-2xl font-bold text-blue-600">
+                    {formatCurrency(deposit)}
+                  </div>
+                  <div className="text-sm text-gray-400">10% of course price</div>
+                </div>
+              </div>
+
+              {/* Discount Info */}
+              <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-4 mb-6">
+                <div className="text-sm font-medium text-gray-700 mb-2">
+                  🎯 Discount Range: {discountRange}
+                </div>
+                <div className="text-xs text-gray-600">
+                  Based on your quiz performance - Rank #1 gets 100% off!
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <button
+                onClick={handleJoinAuction}
+                disabled={
+                  joiningAuction || 
+                  auctionStatus?.status !== AUCTION_STATUS.ACTIVE ||
+                  !isAuthenticated
+                }
+                className={`w-full py-3 px-4 rounded-lg font-medium transition-colors ${
+                  joiningAuction
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : auctionStatus?.status === AUCTION_STATUS.ACTIVE && isAuthenticated
+                    ? 'bg-green-600 text-white hover:bg-green-700'
+                    : auctionStatus?.status === AUCTION_STATUS.UPCOMING
+                    ? 'bg-yellow-600 text-white'
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
+              >
+                {joiningAuction
+                  ? 'Processing...'
+                  : !isAuthenticated
+                  ? 'Login to Join'
+                  : auctionStatus?.status === AUCTION_STATUS.ACTIVE
+                  ? `Join Auction - ${formatCurrency(deposit)}`
+                  : auctionStatus?.status === AUCTION_STATUS.UPCOMING
+                  ? 'Auction Not Started'
+                  : 'Auction Ended'
+                }
+              </button>
+
+              {!isAuthenticated && (
+                <p className="text-xs text-gray-500 text-center mt-2">
+                  Login required to join auctions
+                </p>
+              )}
+            </div>
 
             {/* Instructor Info */}
             <div className="bg-white rounded-xl shadow-sm p-6">
@@ -341,7 +436,7 @@ const CourseDetails = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-sm text-gray-700">{course.instructor.bio}</p>
+              <p className="text-sm text-gray-600">{course.instructor.bio}</p>
             </div>
           </div>
         </div>
