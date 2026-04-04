@@ -19,7 +19,6 @@ We built an **AI-powered knowledge auction system** where students:
 - Join auctions by paying a **small deposit**
 - Compete in **real-time quizzes**
 - Earn **performance-based discounts**
-- Receive **refunds and incentives**
 
 👉 This creates a **fair, engaging, and merit-based learning ecosystem**.
 
