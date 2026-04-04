@@ -74,41 +74,27 @@ We built an **AI-powered knowledge auction system** where students:
 ---
 
 ## 🧱 **Project Structure*
-├── frontend/                 # React 
-frontend
-│   ├── src/
-│   │   ├── components/      # Reusable 
-components
-│   │   ├── pages/          # Page 
-components
-│   │   ├── services/       # API servic
-│   │   ├── context/        # React 
-context
-│   │   ├── utils/          # Utility 
-functions
-│   │   └── App.jsx        # Main app 
-component
-│   ├── package.json
-│   └── tailwind.config.js
-├── backend/                 # Node.js 
-backend
-│   ├── controllers/        # Route 
-controllers
-│   ├── models/           # Database 
-models
-│   ├── routes/           # API routes
-│   ├── middleware/       # Express 
-middleware
-│   ├── services/         # Business 
-logic services
-│   ├── config/           # Configuratio
-files
-│   ├── data/             # Fallback JSO
-data
-│   ├── server.js         # Server entry
-point
-│   └── package.json
-└── README.md
+├── frontend/ # React frontend
+│ ├── src/
+│ │ ├── components/ # Reusable components
+│ │ ├── pages/ # Page components
+│ │ ├── services/ # API services
+│ │ ├── context/ # React context
+│ │ ├── utils/ # Utility functions
+│ │ └── App.jsx # Main app component
+│ ├── package.json
+│ └── tailwind.config.js
+├── backend/ # Node.js backend
+│ ├── controllers/ # Route controllers
+│ ├── models/ # Database models
+│ ├── routes/ # API routes
+│ ├── middleware/ # Express middleware
+│ ├── services/ # Business logic services
+│ ├── config/ # Configuration files
+│ ├── data/ # Fallback JSON data
+│ ├── server.js # Server entry point
+│ └── package.json
+└── README.md  
 ```
 
 
