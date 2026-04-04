@@ -74,27 +74,31 @@ We built an **AI-powered knowledge auction system** where students:
 ---
 
 ## 🧱 **Project Structure*
-├── frontend/ # React frontend
-│ ├── src/
-│ │ ├── components/ # Reusable components
-│ │ ├── pages/ # Page components
-│ │ ├── services/ # API services
-│ │ ├── context/ # React context
-│ │ ├── utils/ # Utility functions
-│ │ └── App.jsx # Main app component
-│ ├── package.json
-│ └── tailwind.config.js
-├── backend/ # Node.js backend
-│ ├── controllers/ # Route controllers
-│ ├── models/ # Database models
-│ ├── routes/ # API routes
-│ ├── middleware/ # Express middleware
-│ ├── services/ # Business logic services
-│ ├── config/ # Configuration files
-│ ├── data/ # Fallback JSON data
-│ ├── server.js # Server entry point
-│ └── package.json
-└── README.md  
+## Project Structure
+
+📂 **frontend/** – React frontend  
+├── 📂 **src/**  
+│   ├── 📂 **components/** – Reusable UI components  
+│   ├── 📂 **pages/** – Page components  
+│   ├── 📂 **services/** – API service functions  
+│   ├── 📂 **context/** – React context for global state  
+│   ├── 📂 **utils/** – Utility/helper functions  
+│   └── 📄 **App.jsx** – Main app component  
+├── 📄 **package.json** – Frontend dependencies  
+└── 📄 **tailwind.config.js** – Tailwind CSS configuration  
+
+📂 **backend/** – Node.js backend  
+├── 📂 **controllers/** – Route controllers  
+├── 📂 **models/** – Database models  
+├── 📂 **routes/** – API routes  
+├── 📂 **middleware/** – Express middleware  
+├── 📂 **services/** – Business logic services  
+├── 📂 **config/** – Configuration files  
+├── 📂 **data/** – Fallback JSON data  
+├── 📄 **server.js** – Server entry point  
+└── 📄 **package.json** – Backend dependencies  
+
+📄 **README.md** – Project documentation  
 ```
 
 
