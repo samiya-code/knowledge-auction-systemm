@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
+import { formatCurrency } from '../utils/formatCurrency';
 import { resultService } from '../utils/calculateTime';
 
 

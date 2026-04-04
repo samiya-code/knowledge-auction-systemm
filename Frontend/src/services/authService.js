@@ -5,7 +5,7 @@ export const authService = {
   // Login user
   login: async (credentials) => {
     try {
-      const response = await api.post('/auth/login', credentials);
+      const response = await api.post('/login', credentials);
       return response.data;
     } catch (error) {
       throw new Error(error.response?.data?.message || 'Login failed');
@@ -15,7 +15,7 @@ export const authService = {
   // Register new user
   register: async (userData) => {
     try {
-      const response = await api.post('/auth/register', userData);
+      const response = await api.post('/register', userData);
       return response.data;
     } catch (error) {
       throw new Error(error.response?.data?.message || 'Registration failed');
@@ -52,5 +52,16 @@ export const authService = {
     } catch (error) {
       throw new Error(error.response?.data?.message || 'Failed to update profile');
     }
+  },
+
+  //createUser
+  createUser: async (userData) => {
+    try {
+      const response = await api.post('/users', userData);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response?.data?.message || 'Failed to create user');
+    }
   }
+
 };

@@ -2,6 +2,7 @@ const express = require('express');
 const { authenticateToken } = require('../middleware/authMiddleware');
 const authController = require('../controllers/authController');
 const { asyncHandler } = require('../middleware/errorHandler');
+const User = require('../models/User');
 
 const router = express.Router();
 
@@ -69,6 +70,15 @@ const validatePasswordChange = (req, res, next) => {
 // Public routes
 router.post('/register', validateRegistration, asyncHandler(authController.register));
 router.post('/login', validateLogin, asyncHandler(authController.login));
+router.post('/users', async (req, res) => {
+  try {
+    const user = new User(req.body);
+    await user.save();
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
 
 // Protected routes
 router.use(authenticateToken);

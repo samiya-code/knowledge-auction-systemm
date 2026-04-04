@@ -1,4 +1,4 @@
-
+<<<<<<< HEAD
 
 # 🎓 **AI Knowledge Auction Platform**
 
@@ -194,3 +194,4 @@ Students can always view:
 - Discount
 - Refund
 - Final price
+>>>>>>> 3c6da0d05a930ee8cf3f977b7c8a4ae491b4773d
