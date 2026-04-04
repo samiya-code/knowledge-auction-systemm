@@ -1,4 +1,4 @@
-# Class Diagrams for Bashedu Auction Platform
+# Class Diagrams for Knowledge Auction Platform
 
 This document contains various diagram formats used to generate classes and understand the system architecture.
 
