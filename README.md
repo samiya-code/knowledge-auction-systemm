@@ -99,46 +99,30 @@ We built an **AI-powered knowledge auction system** where students:
 
 📄 **README.md** – Project documentation
 
-```
 
 # ⚙️ **Setup Instructions**
 
 # 1️⃣ Clone the repository
 
-```
+
 
 git clone <your-repo-link>
 
-```
+
 
 # 2️⃣ Setup Frontend
 
-```
 
 cd frontend
 npm start
 
-```
+
 
 # 3️⃣ Setup Backend
-
-```
 
 cd backend
 npm start
 
-```
-
-
-# 🔑 **Environment Variables**
-
-Create a `.env` file in the backend folder:
-
-```
-
-OPENAI_API_KEY=your_api_key_here
-
-```
 
 # 📜 **Business Rules & Revenue Policies**
 
@@ -199,5 +183,3 @@ Students can always view:
 - Discount
 - Refund
 - Final price
->>>>>>> 3c6da0d05a930ee8cf3f977b7c8a4ae491b4773d
-```
