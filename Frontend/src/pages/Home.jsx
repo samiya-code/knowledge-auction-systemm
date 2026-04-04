@@ -52,7 +52,7 @@ const Home = () => {
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              🎯 AI Knowledge Auction Platform
+               AI Knowledge Auction Platform
             </h1>
             <p className="text-xl mb-8 text-blue-100">
               Compete in quizzes to earn massive discounts on premium courses!
@@ -76,7 +76,11 @@ const Home = () => {
             ) : (
               <div className="bg-white bg-opacity-20 rounded-lg p-6 backdrop-blur-sm">
                 <h2 className="text-2xl font-bold mb-2">
-                  Welcome back, {user.name}! 👋
+                  Welcome back, {user ? (
+  <h1>{user.name}</h1>
+) : (
+  <p>Loading...</p>
+)}! 👋
                 </h2>
                 <p className="text-blue-100">
                   Ready to compete for amazing course discounts?
@@ -177,7 +181,7 @@ const Home = () => {
       <section className="bg-white py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            🚀 How It Works
+             How It Works
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">

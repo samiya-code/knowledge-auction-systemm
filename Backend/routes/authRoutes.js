@@ -2,6 +2,7 @@ const express = require('express');
 const { authenticateToken } = require('../middleware/authMiddleware');
 const authController = require('../controllers/authController');
 const { asyncHandler } = require('../middleware/errorHandler');
+const User = require('../models/User');
 
 const router = express.Router();
 
@@ -71,9 +72,9 @@ router.post('/register', validateRegistration, asyncHandler(authController.regis
 router.post('/login', validateLogin, asyncHandler(authController.login));
 router.post('/users', async (req, res) => {
   try {
-    const newUser = new User(req.body);
-    await newUser.save();
-    res.status(201).json(newUser);
+    const user = new User(req.body);
+    await user.save();
+    res.status(201).json(user);
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
