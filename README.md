@@ -149,20 +149,6 @@ OPENAI_API_KEY=your_api_key_here
 
 ---
 
-## 🎮 **Demo Flow**
-
-1. Open homepage
-2. Select a course
-3. Join auction (**10% deposit**)
-4. Take **AI-generated quiz**
-5. View results:
-   - 🏆 Rank
-   - 🎯 Discount
-   - 💸 Refund
-
-6. Check leaderboard
-
----
 
 ## 📜 **Business Rules & Revenue Policies**
 
