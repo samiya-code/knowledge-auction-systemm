@@ -1,4 +1,4 @@
-# 🎯 Bashedu Auction Platform - FIXED & WORKING 100%
+# 🎯 Knowledge Auction Platform - FIXED & WORKING 100%
 
 ## ✅ **ALL ISSUES FIXED**
 
