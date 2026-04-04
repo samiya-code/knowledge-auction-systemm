@@ -1,0 +1,68 @@
+{
+  "topics": [
+    "Programming Fundamentals",
+    "Data Structures and Algorithms",
+    "Object-Oriented Programming",
+    "Database Systems",
+    "Computer Networks",
+    "Operating Systems",
+    "Software Engineering",
+    "Web Development",
+    "Machine Learning",
+    "Cybersecurity",
+    "Computer Architecture",
+    "Discrete Mathematics"
+  ],
+  "facts": [
+    "Binary is base-2 number system using only 0 and 1",
+    "Algorithm complexity is measured in Big O notation",
+    "OOP principles: Encapsulation, Inheritance, Polymorphism, Abstraction",
+    "TCP/IP is the foundation of internet communication",
+    "SQL stands for Structured Query Language",
+    "Git is a distributed version control system",
+    "REST is an architectural style for web services",
+    "MVC stands for Model-View-Controller",
+    "CPU executes instructions through fetch-decode-execute cycle",
+    "RAM is volatile memory that loses data when power is off"
+  ],
+  "examples": [
+    "Sorting algorithms: Bubble sort, Quick sort, Merge sort",
+    "Data structures: Arrays, Linked lists, Stacks, Queues, Trees, Graphs",
+    "Programming paradigms: Procedural, Object-oriented, Functional",
+    "Database models: Relational, NoSQL, Document-based",
+    "Network protocols: HTTP, HTTPS, FTP, SMTP, DNS",
+    "OS concepts: Process management, Memory management, File systems",
+    "Web technologies: HTML, CSS, JavaScript, React, Angular",
+    "Security concepts: Encryption, Authentication, Authorization"
+  ],
+  "difficultyLevels": {
+    "beginner": [
+      "Basic programming concepts",
+      "Simple data types",
+      "Control structures",
+      "Basic HTML/CSS",
+      "Binary operations"
+    ],
+    "intermediate": [
+      "Data structures implementation",
+      "Algorithm analysis",
+      "OOP design patterns",
+      "Database queries",
+      "Network fundamentals"
+    ],
+    "advanced": [
+      "Complex algorithm design",
+      "System architecture",
+      "Performance optimization",
+      "Security implementations",
+      "Machine learning algorithms"
+    ]
+  },
+  "questionTemplates": {
+    "programming": "What is the output of the following {language} code?\n\n```{language}\n{code}\n```",
+    "theory": "Which of the following best describes {concept} in computer science?",
+    "practical": "How would you implement {feature} using {technology}?",
+    "debugging": "What is the bug in this code and how would you fix it?\n\n```{language}\n{code}\n```",
+    "design": "Design a {system} that handles {scenario}. What components would you need?"
+  }
+}
