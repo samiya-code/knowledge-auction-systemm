@@ -133,6 +133,7 @@ const CourseDetails = () => {
     } finally {
       setJoiningAuction(false);
     }
+  }
   const formatTimeLeft = (milliseconds) => {
     if (!milliseconds || milliseconds <= 0) return 'Ended';
     
