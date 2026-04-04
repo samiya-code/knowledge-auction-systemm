@@ -103,8 +103,6 @@ We built an **AI-powered knowledge auction system** where students:
 
 
 
----
-
 ## ⚙️ **Setup Instructions**
 
 ### 1️⃣ Clone the repository
@@ -127,7 +125,6 @@ cd backend
 npm start
 ```
 
----
 
 ## 🔑 **Environment Variables**
 
@@ -137,7 +134,7 @@ Create a `.env` file in the backend folder:
 OPENAI_API_KEY=your_api_key_here
 ```
 
----
+
 
 
 ## 📜 **Business Rules & Revenue Policies**
@@ -155,7 +152,6 @@ Users can view:
 
 👉 This ensures **transparency** and allows informed decision-making.
 
----
 
 ### 🎓 **Student Participation & Refund Policy**
 
@@ -176,7 +172,6 @@ Users can view:
 - If enrolled students < minimum → **platform compensates provider**
 - If minimum is reached → **no compensation required**
 
----
 
 ### ⚖️ **Fairness & Anti-Cheating**
 
@@ -185,7 +180,6 @@ Users can view:
 - Randomized questions
 - Performance-based ranking
 
----
 
 ### 🤖 **AI Transparency**
 
@@ -193,7 +187,6 @@ Users can view:
 - AI provides **performance feedback**
 - Ranking is based on **measurable performance (not AI bias)**
 
----
 
 ### 📊 **Transparency**
 
