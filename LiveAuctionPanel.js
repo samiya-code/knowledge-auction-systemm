@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { formatCurrency } from '../utils/formatCurrency';
 import { useRealTimeAuction } from '../hooks/useRealTimeAuction';
 import { useApp } from '../context/AppContext';
- 
+
 const LiveAuctionPanel = ({ course }) => {
   const { isAuthenticated, user, addNotification } = useApp();
   const [bidAmount, setBidAmount] = useState('');
   const [showBidHistory, setShowBidHistory] = useState(false);
- 
+
   // Use real-time auction hook
   const {
     auctionData,
@@ -21,10 +21,10 @@ const LiveAuctionPanel = ({ course }) => {
     isLive,
     status
   } = useRealTimeAuction(course.id, course.auctionStatus?.status || 'upcoming');
- 
+
   const deposit = course ? Math.round(course.price * 0.10 * 100) / 100 : 0;
   const minBid = currentBid + 1;
- 
+
   const handlePlaceBid = async () => {
     if (!isAuthenticated) {
       addNotification({
@@ -34,7 +34,7 @@ const LiveAuctionPanel = ({ course }) => {
       });
       return;
     }
- 
+
     const bidValue = parseFloat(bidAmount);
     if (!bidValue || bidValue < minBid) {
       addNotification({
@@ -44,11 +44,11 @@ const LiveAuctionPanel = ({ course }) => {
       });
       return;
     }
- 
+
     try {
       await placeBid(bidValue, user);
       setBidAmount('');
- 
+      
       addNotification({
         type: 'success',
         title: 'Bid Placed!',
@@ -62,7 +62,7 @@ const LiveAuctionPanel = ({ course }) => {
       });
     }
   };
- 
+
   const handleStartAuction = async () => {
     if (!isAuthenticated) {
       addNotification({
@@ -72,10 +72,10 @@ const LiveAuctionPanel = ({ course }) => {
       });
       return;
     }
- 
+
     try {
       await startAuction();
- 
+      
       addNotification({
         type: 'success',
         title: 'Auction Started!',
@@ -89,10 +89,10 @@ const LiveAuctionPanel = ({ course }) => {
       });
     }
   };
- 
+
   const formatTimeLeft = (milliseconds) => {
     if (!milliseconds || milliseconds <= 0) return 'Ended';
- 
+    
     const totalSeconds = Math.floor(milliseconds / 1000);
     if (totalSeconds < 60) {
       return `${totalSeconds}s`;
@@ -106,7 +106,7 @@ const LiveAuctionPanel = ({ course }) => {
       return `${hours}h ${minutes}m`;
     }
   };
- 
+
   const getStatusColor = () => {
     switch (status) {
       case 'active':
@@ -119,7 +119,7 @@ const LiveAuctionPanel = ({ course }) => {
         return 'bg-gray-50 border-gray-200 text-gray-900';
     }
   };
- 
+
   const getStatusIcon = () => {
     switch (status) {
       case 'active':
@@ -132,7 +132,11 @@ const LiveAuctionPanel = ({ course }) => {
         return '❓';
     }
   };
- 
+
+  const progressWidth = status === 'active' 
+    ? `${Math.max(0, (1 - timeLeft / (2 * 60 * 60 * 1000)) * 100)}%`
+    : '0%';
+
   return (
     <div className="bg-white rounded-xl shadow-sm p-6">
       {/* Header */}
@@ -140,7 +144,7 @@ const LiveAuctionPanel = ({ course }) => {
         <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
           {getStatusIcon()} {status === 'active' ? 'Live Auction' : status === 'upcoming' ? 'Upcoming Auction' : 'Auction Ended'}
         </h3>
- 
+        
         {/* Live Indicator */}
         {isLive && (
           <div className="flex items-center gap-2">
@@ -149,7 +153,7 @@ const LiveAuctionPanel = ({ course }) => {
           </div>
         )}
       </div>
- 
+
       {/* Current Status */}
       <div className={`rounded-lg p-4 mb-6 border ${getStatusColor()}`}>
         {status === 'active' ? (
@@ -178,7 +182,7 @@ const LiveAuctionPanel = ({ course }) => {
           </div>
         )}
       </div>
- 
+
       {/* Timer */}
       {(status === 'active' || status === 'upcoming') && (
         <div className="mb-6">
@@ -193,16 +197,12 @@ const LiveAuctionPanel = ({ course }) => {
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
               className="bg-blue-600 h-2 rounded-full transition-all duration-1000"
-              style={{ 
-                width: status === 'active' 
-                  ? `${Math.max(0, (1 - timeLeft / (2 * 60 * 60 * 1000)) * 100}%`
-                  : '0%'
-              }}
+              style={{ width: progressWidth }}
             />
           </div>
         </div>
       )}
- 
+
       {/* Bidding Interface */}
       {status === 'active' && (
         <div className="space-y-4">
@@ -229,7 +229,7 @@ const LiveAuctionPanel = ({ course }) => {
               </button>
             </div>
           </div>
- 
+
           {/* Quick Bid Buttons */}
           <div>
             <div className="text-sm text-gray-600 mb-2">Quick Bid:</div>
@@ -256,7 +256,7 @@ const LiveAuctionPanel = ({ course }) => {
           </div>
         </div>
       )}
- 
+
       {/* Start Auction Button */}
       {status === 'upcoming' && (
         <button
@@ -267,7 +267,7 @@ const LiveAuctionPanel = ({ course }) => {
           {isUpdating ? 'Starting...' : '🚀 Start Auction Now'}
         </button>
       )}
- 
+
       {/* Join Auction Button */}
       {status === 'active' && (
         <button
@@ -280,13 +280,13 @@ const LiveAuctionPanel = ({ course }) => {
           Join Auction - {formatCurrency(deposit)}
         </button>
       )}
- 
+
       {!isAuthenticated && (
         <p className="text-xs text-gray-500 text-center mt-2">
           Login required to participate in auctions
         </p>
       )}
- 
+
       {/* Bid History Toggle */}
       {bids.length > 0 && (
         <div className="mt-6">
@@ -298,7 +298,7 @@ const LiveAuctionPanel = ({ course }) => {
           </button>
         </div>
       )}
- 
+
       {/* Recent Bids */}
       {showBidHistory && bids.length > 0 && (
         <div className="mt-4 border-t pt-4">
@@ -338,5 +338,5 @@ const LiveAuctionPanel = ({ course }) => {
     </div>
   );
 };
- 
+
 export default LiveAuctionPanel;
